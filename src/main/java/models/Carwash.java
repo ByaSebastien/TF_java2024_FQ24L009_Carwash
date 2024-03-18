@@ -2,14 +2,26 @@ package models;
 
 import models.interfaces.CarwashSubscriber;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.*;
 
 public class Carwash {
 
-    private List<CarwashSubscriber> carwashEvent;
+//    private final List<CarwashSubscriber> carwashEvent;
+    private final List<Consumer<Car>> carwashEvent;
+//    private List<BiConsumer<Car,Integer>> biConsumers;
+//    private List<Function<Car,String>> carwashEvents;
+//    private List<BiFunction<Car,Integer,String>> biFunctions;
+//    private List<Predicate<Car>> predicates;
+//    private List<Supplier<String>> suppliers;
 
     public Carwash() {
+//        carwashEvents = new ArrayList<>();
+//        carwashEvents.add((car) -> {
+//             return "Finalisation du traitement de la voiture : " + car.getNumeroPlaque();
+//        });
         this.carwashEvent = new ArrayList<>();
 //        carwashEvent.add((car) -> preparer(car));
 //        carwashEvent.add((car) -> laver(car));
@@ -46,6 +58,6 @@ public class Carwash {
 //        for (CarwashSubscriber subscriber : carwashEvent){
 //            subscriber.execute(c);
 //        }
-        carwashEvent.forEach((s) -> s.execute(c));
+        carwashEvent.forEach((s) -> s.accept(c));
     }
 }
